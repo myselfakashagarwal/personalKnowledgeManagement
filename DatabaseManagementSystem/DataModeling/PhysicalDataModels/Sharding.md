@@ -1,0 +1,2 @@
+## Sharding
+Sharding is just physical division of the database into logical sub parts (shards) based on the attributional value (shard key) which defined the range of the tuples (shard range), All put together logically with shard map, If needed hot shards can divide (split) further or can be merged. 
