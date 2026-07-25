@@ -1,0 +1,1 @@
+HPC aims to maximize performance by minimizing abstraction penalties between application, system software, and hardware. This includes managing the aspects like node, network, hardware, execution architectures and application that helps in implementing the structure. HPC is closely coupled with execution semantics. 
