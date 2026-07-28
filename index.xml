@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>Akash&#039;s PKM</title>
+      <link>https://myselfakashagarwal.github.io/personalKnowledgeManagement</link>
+      <description>Last 10 notes on Akash&#039;s PKM</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>DockerImage</title>
+    <link>https://myselfakashagarwal.github.io/personalKnowledgeManagement/Docker/DockerImage</link>
+    <guid>https://myselfakashagarwal.github.io/personalKnowledgeManagement/Docker/DockerImage</guid>
+    <description><![CDATA[ Docker Image An image is bundle of packages and binaries with dependency managed. ]]></description>
+    <pubDate>Tue, 28 Jul 2026 15:49:16 GMT</pubDate>
+  </item><item>
+    <title>DockerNetworking</title>
+    <link>https://myselfakashagarwal.github.io/personalKnowledgeManagement/Docker/DockerNetworking</link>
+    <guid>https://myselfakashagarwal.github.io/personalKnowledgeManagement/Docker/DockerNetworking</guid>
+    <description><![CDATA[ Docker networking On linux systems the docker daemon process runs in host network, the daemon creates a default network bridge in which containers with no network specified are placed init, matter fact containers can communicate with each other via IPs and host. ]]></description>
+    <pubDate>Tue, 28 Jul 2026 15:49:16 GMT</pubDate>
+  </item><item>
+    <title>DockerStorage</title>
+    <link>https://myselfakashagarwal.github.io/personalKnowledgeManagement/Docker/DockerStorage</link>
+    <guid>https://myselfakashagarwal.github.io/personalKnowledgeManagement/Docker/DockerStorage</guid>
+    <description><![CDATA[ Volumes Volumes are stored locally on the host and are persistent. ]]></description>
+    <pubDate>Tue, 28 Jul 2026 15:49:16 GMT</pubDate>
+  </item><item>
+    <title>Git</title>
+    <link>https://myselfakashagarwal.github.io/personalKnowledgeManagement/Git/Git</link>
+    <guid>https://myselfakashagarwal.github.io/personalKnowledgeManagement/Git/Git</guid>
+    <description><![CDATA[ Git Git is a distributed version used to track changes overtime. ]]></description>
+    <pubDate>Tue, 28 Jul 2026 15:49:16 GMT</pubDate>
+  </item><item>
+    <title>Linux</title>
+    <link>https://myselfakashagarwal.github.io/personalKnowledgeManagement/Linux/Linux</link>
+    <guid>https://myselfakashagarwal.github.io/personalKnowledgeManagement/Linux/Linux</guid>
+    <description><![CDATA[ Linux Linux Architecture (HL) Linux is a kernel which sits between software and hardware. ]]></description>
+    <pubDate>Tue, 28 Jul 2026 15:49:16 GMT</pubDate>
+  </item><item>
+    <title>LinuxDataFlowAndStreams</title>
+    <link>https://myselfakashagarwal.github.io/personalKnowledgeManagement/Linux/LinuxDataFlowAndStreams</link>
+    <guid>https://myselfakashagarwal.github.io/personalKnowledgeManagement/Linux/LinuxDataFlowAndStreams</guid>
+    <description><![CDATA[ Linux Streams and pipes Streams can be defined as the mechanism for inter process data share. Within streams data flow from source to target. ]]></description>
+    <pubDate>Tue, 28 Jul 2026 15:49:16 GMT</pubDate>
+  </item><item>
+    <title>LinuxFile</title>
+    <link>https://myselfakashagarwal.github.io/personalKnowledgeManagement/Linux/LinuxFile</link>
+    <guid>https://myselfakashagarwal.github.io/personalKnowledgeManagement/Linux/LinuxFile</guid>
+    <description><![CDATA[ Linux file Everything in linux is a file cause think, a task is completed by a process, a process is a program in execution, and where do we store the program ?? ofc on the file. ]]></description>
+    <pubDate>Tue, 28 Jul 2026 15:49:16 GMT</pubDate>
+  </item><item>
+    <title>LinuxOperations</title>
+    <link>https://myselfakashagarwal.github.io/personalKnowledgeManagement/Linux/LinuxOperations</link>
+    <guid>https://myselfakashagarwal.github.io/personalKnowledgeManagement/Linux/LinuxOperations</guid>
+    <description><![CDATA[ Linux Package management Package refers to a compressed archive of files that make up a software application, along with metadata describing the package, like version, dependencies, installation instructions, and more. ]]></description>
+    <pubDate>Tue, 28 Jul 2026 15:49:16 GMT</pubDate>
+  </item><item>
+    <title>LinuxProcessAndServices</title>
+    <link>https://myselfakashagarwal.github.io/personalKnowledgeManagement/Linux/LinuxProcessAndServices</link>
+    <guid>https://myselfakashagarwal.github.io/personalKnowledgeManagement/Linux/LinuxProcessAndServices</guid>
+    <description><![CDATA[ Linux Processes A process is a program in execution, the program is stored onto the file. ]]></description>
+    <pubDate>Tue, 28 Jul 2026 15:49:16 GMT</pubDate>
+  </item><item>
+    <title>LinuxStorage</title>
+    <link>https://myselfakashagarwal.github.io/personalKnowledgeManagement/Linux/LinuxStorage</link>
+    <guid>https://myselfakashagarwal.github.io/personalKnowledgeManagement/Linux/LinuxStorage</guid>
+    <description><![CDATA[ Block Device A block device is a type of hardware or virtual device in Linux/Unix that allows data to be read and written in fixed-size blocks, typically 512 bytes or 4 KiB, rather than as a continuous stream. ]]></description>
+    <pubDate>Tue, 28 Jul 2026 15:49:16 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>

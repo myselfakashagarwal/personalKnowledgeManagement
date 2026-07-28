@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head><title>LinuxStorage</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=Inter:ital,wght@0,400;0,600;1,400;1,600&amp;family=JetBrains Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Akash's PKM"/><meta property="og:title" content="LinuxStorage"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="LinuxStorage"/><meta name="twitter:description" content="Block Device A block device is a type of hardware or virtual device in Linux/Unix that allows data to be read and written in fixed-size blocks, typically 512 bytes or 4 KiB, rather than as a continuous stream."/><meta property="og:description" content="Block Device A block device is a type of hardware or virtual device in Linux/Unix that allows data to be read and written in fixed-size blocks, typically 512 bytes or 4 KiB, rather than as a continuous stream."/><meta property="og:image:alt" content="Block Device A block device is a type of hardware or virtual device in Linux/Unix that allows data to be read and written in fixed-size blocks, typically 512 bytes or 4 KiB, rather than as a continuous stream."/><meta property="og:image" content="https://myselfakashagarwal.github.io/personalKnowledgeManagement/static/og-image.png"/><meta property="og:image:url" content="https://myselfakashagarwal.github.io/personalKnowledgeManagement/static/og-image.png"/><meta name="twitter:image" content="https://myselfakashagarwal.github.io/personalKnowledgeManagement/static/og-image.png"/><meta property="og:image:type" content="image/.png"/><meta property="twitter:domain" content="myselfakashagarwal.github.io/personalKnowledgeManagement"/><meta property="og:url" content="https://myselfakashagarwal.github.io/personalKnowledgeManagement/Linux/LinuxStorage"/><meta property="twitter:url" content="https://myselfakashagarwal.github.io/personalKnowledgeManagement/Linux/LinuxStorage"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="Block Device A block device is a type of hardware or virtual device in Linux/Unix that allows data to be read and written in fixed-size blocks, typically 512 bytes or 4 KiB, rather than as a continuous stream."/><meta name="generator" content="Quartz"/><link href="../index.css" rel="stylesheet" type="text/css" data-persist="true"/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiL2hvbWUvcnVubmVyL3dvcmsvcGVyc29uYWxLbm93bGVkZ2VNYW5hZ2VtZW50L3BlcnNvbmFsS25vd2xlZGdlTWFuYWdlbWVudC9xdWFydHovcXVhcnR6L2NvbXBvbmVudHMvc3R5bGVzIiwic291cmNlcyI6WyJtZXJtYWlkLmlubGluZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFHRjtFQUNFOzs7QUFLRjtFQUNFO0VBQ0E7OztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFOztBQUdGO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFJSjtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7O0FBR0Y7RUFDRTs7QUFJRjtFQUNFO0VBQ0E7RUFDQSIsInNvdXJjZXNDb250ZW50IjpbIi5leHBhbmQtYnV0dG9uIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbG9hdDogcmlnaHQ7XG4gIHBhZGRpbmc6IDAuNHJlbTtcbiAgbWFyZ2luOiAwLjNyZW07XG4gIHJpZ2h0OiAwOyAvLyBOT1RFOiByaWdodCB3aWxsIGJlIHNldCBpbiBtZXJtYWlkLmlubGluZS50c1xuICBjb2xvcjogdmFyKC0tZ3JheSk7XG4gIGJvcmRlci1jb2xvcjogdmFyKC0tZGFyayk7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWxpZ2h0KTtcbiAgYm9yZGVyOiAxcHggc29saWQ7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgb3BhY2l0eTogMDtcbiAgdHJhbnNpdGlvbjogMC4ycztcblxuICAmID4gc3ZnIHtcbiAgICBmaWxsOiB2YXIoLS1saWdodCk7XG4gICAgZmlsdGVyOiBjb250cmFzdCgwLjMpO1xuICB9XG5cbiAgJjpob3ZlciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIGJvcmRlci1jb2xvcjogdmFyKC0tc2Vjb25kYXJ5KTtcbiAgfVxuXG4gICY6Zm9jdXMge1xuICAgIG91dGxpbmU6IDA7XG4gIH1cbn1cblxucHJlIHtcbiAgJjpob3ZlciA+IC5leHBhbmQtYnV0dG9uIHtcbiAgICBvcGFjaXR5OiAxO1xuICAgIHRyYW5zaXRpb246IDAuMnM7XG4gIH1cbn1cblxuI21lcm1haWQtY29udGFpbmVyIHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICBjb250YWluOiBsYXlvdXQ7XG4gIHotaW5kZXg6IDk5OTtcbiAgbGVmdDogMDtcbiAgdG9wOiAwO1xuICB3aWR0aDogMTAwdnc7XG4gIGhlaWdodDogMTAwdmg7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIGRpc3BsYXk6IG5vbmU7XG4gIGJhY2tkcm9wLWZpbHRlcjogYmx1cig0cHgpO1xuICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDAuNSk7XG5cbiAgJi5hY3RpdmUge1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgfVxuXG4gICYgPiAjbWVybWFpZC1zcGFjZSB7XG4gICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tbGlnaHRncmF5KTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1saWdodCk7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIHBvc2l0aW9uOiBmaXhlZDtcbiAgICB0b3A6IDUwJTtcbiAgICBsZWZ0OiA1MCU7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwgLTUwJSk7XG4gICAgaGVpZ2h0OiA4MHZoO1xuICAgIHdpZHRoOiA4MHZ3O1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG5cbiAgICAmID4gLm1lcm1haWQtY29udGVudCB7XG4gICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICB0cmFuc2Zvcm0tb3JpZ2luOiAwIDA7XG4gICAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4xcyBlYXNlO1xuICAgICAgb3ZlcmZsb3c6IHZpc2libGU7XG4gICAgICBtaW4taGVpZ2h0OiAyMDBweDtcbiAgICAgIG1pbi13aWR0aDogMjAwcHg7XG5cbiAgICAgIHByZSB7XG4gICAgICAgIG1hcmdpbjogMDtcbiAgICAgICAgYm9yZGVyOiBub25lO1xuICAgICAgfVxuXG4gICAgICBzdmcge1xuICAgICAgICBtYXgtd2lkdGg6IG5vbmU7XG4gICAgICAgIGhlaWdodDogYXV0bztcbiAgICAgIH1cbiAgICB9XG5cbiAgICAmID4gLm1lcm1haWQtY29udHJvbHMge1xuICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgYm90dG9tOiAyMHB4O1xuICAgICAgcmlnaHQ6IDIwcHg7XG4gICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgZ2FwOiA4cHg7XG4gICAgICBwYWRkaW5nOiA4cHg7XG4gICAgICBiYWNrZ3JvdW5kOiB2YXIoLS1saWdodCk7XG4gICAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgICAgYm9yZGVyLXJhZGl1czogNnB4O1xuICAgICAgYm94LXNoYWRvdzogMCAycHggNHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgICAgIHotaW5kZXg6IDI7XG5cbiAgICAgIC5tZXJtYWlkLWNvbnRyb2wtYnV0dG9uIHtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgIHdpZHRoOiAzMnB4O1xuICAgICAgICBoZWlnaHQ6IDMycHg7XG4gICAgICAgIHBhZGRpbmc6IDA7XG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgICAgY29sb3I6IHZhcigtLWRhcmspO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICBmb250LWZhbWlseTogdmFyKC0tYm9keUZvbnQpO1xuICAgICAgICB0cmFuc2l0aW9uOiBhbGwgMC4ycyBlYXNlO1xuXG4gICAgICAgICY6aG92ZXIge1xuICAgICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIH1cblxuICAgICAgICAmOmFjdGl2ZSB7XG4gICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDFweCk7XG4gICAgICAgIH1cblxuICAgICAgICAvLyBTdHlsZSB0aGUgcmVzZXQgYnV0dG9uIGRpZmZlcmVudGx5XG4gICAgICAgICY6bnRoLWNoaWxkKDIpIHtcbiAgICAgICAgICB3aWR0aDogYXV0bztcbiAgICAgICAgICBwYWRkaW5nOiAwIDEycHg7XG4gICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuICB9XG59XG4iXX0= */</style><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../prescript.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://myselfakashagarwal.github.io/personalKnowledgeManagement/index.xml"/></head><body data-slug="Linux/LinuxStorage"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="..">Akash's PKM</a></h2><div class="spacer mobile-only"></div><div class="search"><button class="search-button"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Search</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div class="search-layout" data-preview="true"></div></div></div></div><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button><div class="explorer" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=>!a.isFolder&amp;&amp;!b.isFolder||a.isFolder&amp;&amp;b.isFolder?a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;}):!a.isFolder&amp;&amp;b.isFolder?1:-1&quot;,&quot;filterFn&quot;:&quot;node=>node.slugSegment!==\&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;node=>node&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-59"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-59" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#"></a></li></template><template id="template-folder"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../Linux/">Linux</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>LinuxStorage</a></div></nav><h1 class="article-title">LinuxStorage</h1><p show-comma="true" class="content-meta"><time datetime="2026-07-28T15:49:16.565Z">Jul 28, 2026</time><span>12 min read</span></p></div></div><article class="popover-hint"><h2 id="block-device">Block Device<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#block-device" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>A <strong>block device</strong> is a type of hardware or virtual device in Linux/Unix that allows <strong>data to be read and written in fixed-size blocks</strong>, typically 512 bytes or 4 KiB, rather than as a continuous stream.</p>
+<h3 id="types-of-block-devices">Types of block devices<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#types-of-block-devices" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Block Device    Type</th><th>Description</th><th>Linux Device File Examples</th><th>Key Characteristics</th></tr></thead><tbody><tr><td><strong>HDD (Hard Disk Drive)</strong></td><td>Traditional spinning disks</td><td><code>/dev/sda</code>, <code>/dev/sdb</code></td><td>Persistent storage, random access in blocks</td></tr><tr><td><strong>SSD (Solid-State Drive)</strong></td><td>Flash-based storage</td><td><code>/dev/nvme0n1</code> (NVMe), <code>/dev/sdX</code> (SATA)</td><td>Faster than HDD, no moving parts, block-addressable</td></tr><tr><td><strong>Removable Storage</strong></td><td>USB drives, external disks</td><td><code>/dev/sdX</code>, <code>/dev/sr1</code></td><td>Hot-pluggable, treated as block devices</td></tr><tr><td><strong>Optical Drives</strong></td><td>CD/DVD/Blu-ray drives</td><td><code>/dev/sr0</code>, <code>/dev/cdrom</code></td><td>Read/write in blocks, often read-only</td></tr><tr><td><strong>RAID Devices</strong></td><td>Virtual devices combining multiple disks</td><td><code>/dev/md0</code>, <code>/dev/md1</code></td><td>Redundancy or striping, block-level abstraction</td></tr><tr><td><strong>Loop Devices</strong></td><td>Treats a file as a block device</td><td><code>/dev/loop0</code>, <code>/dev/loop1</code></td><td>Mount ISO/images, encrypted containers</td></tr><tr><td><strong>Network Block Devices</strong></td><td>Block storage over network</td><td><code>/dev/nbd0</code>, <code>/dev/sdX</code> (mapped)</td><td>Behaves like local disk, supports iSCSI/NBD</td></tr><tr><td><strong>Virtual / Memory Devices</strong></td><td>RAM disks</td><td><code>/dev/ram0</code>, <code>/dev/ram1</code></td><td>Volatile storage, very fast, behaves like block device</td></tr></tbody></table></div>
+<h5 id="related-commands">Related Commands<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#related-commands" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># df is the utility to get info</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">df</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [OPTIONS/FLAGS] [ARGUMENTS] [DIR/FILE/BLOCK]</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -a</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # flag to see all the mounted files system including association with block</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -l</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # flag to limit only local file system </span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -h</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # flag to print in human readable format </span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # flag to invert results </span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -type</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> #FILE-SYSTEM-TYPE option to filter out results on equivalence of file        system</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># du command is used to diplay disk usage statics (quick commands) </span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">du</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -sh</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $DIRPATH</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">/FIL</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # display the output summary in human readbale format</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Get the UUID of the block device (quick command) </span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> blkid</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $PATH</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">-TO-BLOCK</span></span></code></pre></figure>
+<h2 id="partition-scheme">Partition Scheme<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#partition-scheme" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>The data is actually stored onto the data blocks / sectors within the disk, a new disk is just set of physical data blocks. When the disk is initialised with a partition scheme a partition table is created and saved in the first reserved sector of the hard disk, this table contains meta data definition like how many partitions can exist how their sectors are organised accordingly.</p>
+<h3 id="partition-scheme-types">Partition scheme types<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#partition-scheme-types" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="mbr">MBR<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#mbr" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>In an <strong>MBR disk</strong>, a <strong>primary partition</strong> is a directly defined partition in the MBR table that can store data or an OS and is bootable. An <strong>extended partition</strong> is a special type of primary partition that acts as a container for <strong>logical partitions</strong>, allowing a disk to have more than four partitions. <strong>Logical partitions</strong> reside inside the extended partition, function like primary partitions for storing data, but generally cannot be booted from directly. This hierarchy ensures that MBR’s four-partition limit is extended while maintaining OS compatibility.</p>
+<h4 id="gpt">GPT<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#gpt" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>In a <strong>GPT disk</strong>, all partitions are treated as <strong>equal primary partitions</strong>, eliminating the need for extended or logical partitions. Each partition is identified by a <strong>unique GUID</strong> and can store data, an OS, or special system files such as EFI or recovery partitions. GPT supports a large number of partitions (default 128, configurable up to thousands) and includes <strong>redundant partition tables</strong> and <strong>checksums</strong> for integrity, making it more robust and scalable than MBR.</p>
+<h5 id="references">References<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#references" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Feature</th><th><strong>MBR (Master Boot Record)</strong></th><th>GPT (GUID Partition Table)</th></tr></thead><tbody><tr><td><strong>Metadata Location</strong></td><td>Sector 0 (first 512 bytes): boot loader + 4 partition entries</td><td>LBA0: Protective MBR<br/>LBA1: Primary GPT Header<br/>LBAs 2–33: Partition Entries<br/>Last LBAs: Backup GPT</td></tr><tr><td><strong>Max Disk Size</strong></td><td>2 TiB (32-bit LBA addressing)</td><td>8 ZiB (64-bit LBA addressing)</td></tr><tr><td><strong>Max Partitions</strong></td><td>3 primary + 1 extended within upto 128 logicals inside</td><td>Typically 128 by default</td></tr><tr><td><strong>Partition Type IDs</strong></td><td>1-byte type code (e.g., 0x83 = Linux, 0x07 = NTFS)</td><td>16-byte GUID per partition type</td></tr><tr><td><strong>Redundancy</strong></td><td>None (single MBR sector → single point of failure)</td><td>Yes: backup GPT header + CRC checksums for integrity</td></tr><tr><td><strong>Boot Compatibility</strong></td><td>BIOS (legacy boot loaders in MBR bootstrap code)</td><td>UEFI (requires EFI System Partition); Protective MBR for legacy tools</td></tr><tr><td><strong>Recovery</strong></td><td>Fragile: corruption of sector 0 breaks scheme</td><td>Resilient: backup GPT at disk end can restore metadata</td></tr></tbody></table></div>
+<h5 id="related-commands-1">Related Commands<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#related-commands-1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># fdisk is the utility to work with disk (with bitchass cli)</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># To initilize a disk with GPT partition scheme </span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">fdisk</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/sdx</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># PRESS g for initilizing disk with GPT and creating a partition table </span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># PRESS n for new partition followed with prompts </span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># PRESS w for write the changes </span></span></code></pre></figure>
+<h2 id="partitons">Partitons<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#partitons" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>After the partition scheme is defined to disk  partitions are created.  A partition is a logical division of the disk into parts when created these are defined in the partition table which keeps track of which partition starts and ends at which sector.</p>
+<h5 id="related-commands-2">Related Commands<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#related-commands-2" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># fdisk to create partitions </span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">parted</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Start parted on a disk device (interactive shell)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">parted</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -l</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # List all partitions on all recognized devices</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">parted</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> print</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Show partition table for the device</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">parted</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> mklabel</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> gpt</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Create new GPT partition table</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">parted</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> mklabel</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> msdos</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Create new MBR partition table</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">parted</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> mkpart</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> NAME</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> TYPE</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> START</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> END</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Create partition (TYPE=primary, logical, extended)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">parted</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> rm</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> N</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Remove partition N</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">parted</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> resizepart</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> N</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> END</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Resize partition N to END sector/size</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">parted</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> move</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> N</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> START</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> END</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Move partition N to new location</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">parted</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> name</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> N</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> NAME</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Assign name to partition N</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">parted</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> set</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> N</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> FLAG</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> STATE</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Set flag (boot, lvm, raid, esp, hidden, etc.)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">parted</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> align-check</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> TYPE</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> N</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Check alignment of partition N (TYPE=min|opt)</span></span>
+<span data-line> </span></code></pre></figure>
+<h2 id="file-systems">File systems<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#file-systems" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>After the partitions are made, the partition is formatted with the file system, which handles all the things related to blocks like allocation , tracking, mapping etc.</p>
+<h3 id="file-system-types">File system types<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#file-system-types" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>File System</th><th>Best Use Case</th><th>Key Features</th><th>Limitations</th></tr></thead><tbody><tr><td><strong>ext4</strong></td><td>General purpose (default in most distros, desktops, servers)</td><td>Journaling, stable, supports large files/volumes, low overhead</td><td>No built-in snapshots or checksumming</td></tr><tr><td><strong>XFS</strong></td><td>Large files, high-performance servers, parallel I/O</td><td>Scales well, journaling, good throughput</td><td>Poor performance with many small files, resizing is limited</td></tr><tr><td><strong>Btrfs</strong></td><td>Systems needing snapshots, rollback, data integrity</td><td>Copy-on-write, snapshots, subvolumes, checksumming</td><td>Still less stable at huge scale compared to ext4/XFS</td></tr><tr><td><strong>F2FS</strong></td><td>Flash/SSD storage (phones, embedded, laptops with SSD)</td><td>Optimized for NAND flash, wear leveling</td><td>Not ideal for spinning HDDs, less common on servers</td></tr><tr><td><strong>ZFS (on Linux)</strong></td><td>Enterprise storage, NAS, data integrity critical systems</td><td>Copy-on-write, snapshots, self-healing, built-in RAID</td><td>High RAM usage, not native in Linux kernel (CDDL license issues)</td></tr></tbody></table></div>
+<h5 id="related-commands-3">Related Commands<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#related-commands-3" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Commands related to creation of file system </span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">mkfs.ext4</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Create EXT4 filesystem (most common Linux FS)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">mkfs.xfs</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Create XFS filesystem (high-performance, journaling FS)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">mkfs.btrfs</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Create Btrfs filesystem (copy-on-write, snapshots, CS)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">mkfs.fat</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Create FAT32 filesystem (compatibility, small devices)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">mkfs.vfat</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Alias for mkfs.fat</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">mkfs.ntfs</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Create NTFS filesystem (used in Windows systems)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">mkfs.exfat</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Create exFAT filesystem (large files, external drives)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">mkfs.minix</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Create Minix filesystem (legacy, simple FS)</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">fsck</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Check and repair a filesystem</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">e2fsck</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Check/repair EXT2/3/4 filesystem</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">xfs_repair</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Repair XFS filesystem</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">btrfs</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> check</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /dev/DEVICE</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Check Btrfs filesystem</span></span></code></pre></figure>
+<h2 id="mounting">Mounting<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#mounting" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Mounting is just mapping of directory to a block device, therefore all the data of the disk will be stored onto the block device.</p>
+<h5 id="related-commands-4">Related Commands<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#related-commands-4" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># To find all the mountpoints (quick command) </span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">findmnt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [DIRPATH/BLOCKDEVICE] --list</span></span></code></pre></figure>
+<h3 id="mount-manually">Mount manually<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#mount-manually" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># To handle mounting mount &amp; unmount commands are used (quick commands)</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># to mount a block device</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">mount</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -t</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> FILE-SYS-TYPE</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -O</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> options</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> BLOCKDEVICE</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> DIRPATH</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># to unmount a block device</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">umount</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> BLOCKDEVICE</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> DIRPATH</span></span></code></pre></figure>
+<h3 id="mount-automaticialy">Mount automaticialy<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#mount-automaticialy" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>The mounting is manual but can be permanent using /etc/fstab file. which is a table of 6 columns where</p>
+<ul>
+<li><strong>Device</strong>: usually the given name or UUID of the mounted device (sda1/sda2/etc).</li>
+<li><strong>Mount Point</strong>: designates the directory where the device is/will be mounted.</li>
+<li><strong>File System Type</strong>: nothing trick here, shows the type of filesystem in use.</li>
+<li><strong>Options</strong>: lists any active mount options. If using multiple options they must be separated by commas.</li>
+<li><strong>Backup Operation</strong>: (the first digit) this is a binary system where <code>1</code> = dump utility backup of a partition. <code>0</code> = no backup. This is an outdated backup method and should NOT be used.</li>
+<li><strong>File System Check Order</strong>: (second digit) Here we can see three possible outcomes. <code>0</code> means that fsck will not check the filesystem. Numbers higher than this represent the check order. The root filesystem should be set to <code>1</code> and other partitions set to <code>2</code></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><strong>Mount option</strong></th><th><strong>Description</strong></th></tr></thead><tbody><tr><td><code>defaults</code></td><td>Option that includes all of <code>auto</code>, <code>rw</code>, <code>nouser</code>, <code>exec</code>, and <code>suid</code></td></tr><tr><td><code>auto</code></td><td>Auto-mounting upon booting</td></tr><tr><td><code>noauto</code></td><td>Does not mount automatically upon booting</td></tr><tr><td><code>rw</code></td><td>Mount so that reading and writing are both available</td></tr><tr><td><code>ro</code></td><td>Read only</td></tr><tr><td><code>nouser</code></td><td>Only the root account can mount</td></tr><tr><td><code>user</code></td><td>Regular accounts can also mount</td></tr><tr><td><code>exec</code></td><td>Permits files to run</td></tr><tr><td><code>suid</code></td><td>Permits SetUID and SetGID</td></tr><tr><td><code>nofail</code></td><td>Allows booting even if an error occurs. If mounting fails due to a typo, it boots by excluding the volume with the error</td></tr></tbody></table></div>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Sample entry</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">/dev/sdb1</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">   /mnt/data</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">   ext4</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">   defaults,auto,rw,user,exec,suid,nofail</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">   0</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">   2</span></span></code></pre></figure>
+<h2 id="logical-volume-management">Logical Volume Management<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#logical-volume-management" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Logical volume management can be defined as a mechanism in which multiple block device with different storage capacity can contribute to storage pool, out of which needful storage can be casted out to use accordingly. \</p>
+<h3 id="lvm-components">LVM components<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#lvm-components" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="physical-volume">Physical Volume<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#physical-volume" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Physical volume is just a block device initialised with physical volume of lvm. This can be used to contribute to volume group.</p>
+<h5 id="related-commands-5">Related Commands<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#related-commands-5" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># physical volume commands</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># LVM recognises physical volumes by applying label on them </span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">pvs</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Command to list all the volumes</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -a</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag tolList all devices including inactive PVs</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -o</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag to specify columns to display</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag fot Verbose output</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">pvscan</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Command to scan all disks for physical volumes and display details</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag for verbose, show detailed info</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  --cache</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag to update cache</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">pvck</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $BLOCK </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Check metadata and consistency of a Physical Volume</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag for verbose, show detailed metadata</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -f</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag to force check even if PV appears valid</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">pvcreate</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> BLOCK</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Initialize a block device or partition as an LVM Physical Volume</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -ff</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag to force creation even if existing signatures or data exist</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -y</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">  # Flag to answer yes to all prompts</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  --dataalignment</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $ALIGNMENT_BYTE </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Option to align data to specified boundary </span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  --metadatasize</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $SIZE </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Option to set metadata size for the PV (default auto)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  --uuid</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $UUID </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Option to assign a specific UUID to the PV</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">pvchange</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [OPTIONS] BLOCK </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Change attributes of an existing physical volume</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -x</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> n</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">|</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">y</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $BLOCK </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Flag to enable (y) or disable (n) allocation of LVs on this PV</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  --uuid</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $UUID </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">BLOCK</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag to show or change the UUID of the PV</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  --alloc</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $POLICY </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">BLOCK</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Option to set allocation policy (contiguous, cling, normal)</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">pvresize</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> BLOCK</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Resize a Physical Volume to match the size of the underlying block device</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  --setphysicalvolumesize</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $SIZE $BLOCK </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Option to resize PV to a specific size</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $BLOCK </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Flag for verbose output</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">pvremove</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $BLOCK </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Remove a Physical Volume from LVM</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -f</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $BLOCK </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Flag to force removal without confirmation</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -y</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $BLOCK </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Flag to answer yes to all prompts</span></span></code></pre></figure>
+<h4 id="volume-group">Volume Group<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#volume-group" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>A volume group represent storage pool, out of which logical storage can be casted out.</p>
+<h5 id="related-commands-6">Related Commands<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#related-commands-6" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">vgs</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # To list all the volume groups</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -a</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag to include inactive volume groups</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -o</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $COLUMNS </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Flag to specify columns to display</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag for verbose output</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">vgscan</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # To get storage details of volume groups</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag for verbose, show detailed info</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  --cache</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag to update cache</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">vgdisplay</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $VGNAME </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># To get details of a volume group with metadata</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag for verbose, show all internal VG metadata</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">vgcreate</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> VGNAME</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> BLOCKS</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # To create a volume group from one or more physical volumes</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -s</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $SIZE </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Option to set Physical Extent (PE) size</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -f</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag to force creation even if VG with same name exists</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag for verbose output</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">vgextend</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> VGNAME</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> BLOCKS</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # To extend a volume group by adding physical volumes</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag for verbose output</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  --alloc</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $POLICY </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Option to set allocation policy (contiguous, cling, normal)</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">vgmerge</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $VGNAME1 $VGNAME2 </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># To combine two or more volume groups</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag for verbose output</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">vgrename</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $NEW</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">-VGNAME</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $OLD</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">-VGNAME</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # To rename a volume group</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag for verbose output</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">vgreduce</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $VGNAME $BLOCKS </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># To remove a physical volume from a volume group</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag for verbose output</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  --removemissing</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag to remove missing PVs</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">vgremove</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $VGNAME </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># To delete a volume group</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -f</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag to force removal without confirmation</span></span></code></pre></figure>
+<h4 id="logical-volume">Logical Volume<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#logical-volume" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Logical volume is casted storage out of volume group this storage can be formatted with file system, and mounted too.</p>
+<h5 id="related-commands-7">Related Commands<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#related-commands-7" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">lvs</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # To list all logical volumes</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -a</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag to include inactive logical volumes</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -o</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> COLUMNS</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag to specify columns to display</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag for verbose output</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">lvscan</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # To scan all volume groups and logical volumes</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag for verbose, show detailed info</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">lvdisplay</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> LVNAME</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # To get detailed information about a logical volume</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag for verbose, show all internal LV metadata</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">lvcreate</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -n</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> LVNAME</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -L</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> SIZE</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> VGNAME</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # To create a new logical volume from a volume group</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -i</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> NUMBER</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag to create a striped LV across NUMBER of PVs</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -I</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> STRIPESIZE</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Option to set stripe size</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -s</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag to create a snapshot of an existing LV</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag for verbose output</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">lvextend</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -L</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> SIZE</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> LVNAME</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # To increase the size of a logical volume</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -r</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag to resize the filesystem along with LV</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag for verbose output</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">lvreduce</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -L</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> SIZE</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> LVNAME</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # To decrease the size of a logical volume</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -r</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag to resize the filesystem along with LV</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag for verbose output</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -f</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag to force reduction without confirmation</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">lvremove</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> LVNAME</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # To delete a logical volume</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -f</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag to force removal without confirmation</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag for verbose output</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">lvrename</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> OLD-LVNAME</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> NEW-LVNAME</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # To rename a logical volume</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag for verbose output</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">lvconvert</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # To convert logical volumes to mirrored or RAID type</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -m</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> NUMBER</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Number of mirrors</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">  -v</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"> # Flag for verbose output</span></span></code></pre></figure></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Graph View</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc desktop-only"><button type="button" class="toc-header" aria-controls="toc-33" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-1" class="toc-content overflow"><li class="depth-0"><a href="#block-device" data-for="block-device">Block Device</a></li><li class="depth-1"><a href="#types-of-block-devices" data-for="types-of-block-devices">Types of block devices</a></li><li class="depth-0"><a href="#partition-scheme" data-for="partition-scheme">Partition Scheme</a></li><li class="depth-1"><a href="#partition-scheme-types" data-for="partition-scheme-types">Partition scheme types</a></li><li class="depth-0"><a href="#partitons" data-for="partitons">Partitons</a></li><li class="depth-0"><a href="#file-systems" data-for="file-systems">File systems</a></li><li class="depth-1"><a href="#file-system-types" data-for="file-system-types">File system types</a></li><li class="depth-0"><a href="#mounting" data-for="mounting">Mounting</a></li><li class="depth-1"><a href="#mount-manually" data-for="mount-manually">Mount manually</a></li><li class="depth-1"><a href="#mount-automaticialy" data-for="mount-automaticialy">Mount automaticialy</a></li><li class="depth-0"><a href="#logical-volume-management" data-for="logical-volume-management">Logical Volume Management</a></li><li class="depth-1"><a href="#lvm-components" data-for="lvm-components">LVM components</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>Backlinks</h3><ul id="list-2" class="overflow"><li><a href="../Linux/Linux" class="internal">Linux</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.5.2</a> © 2026</p><ul><li><a href="https://github.com/myselfakashagarwal/personalKnowledgeManagement">GitHub</a></li></ul></footer></div></div></body><script type="application/javascript" data-persist="true">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module" data-persist="true">function E(a,e){if(!a)return;function t(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function n(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}a?.addEventListener("click",t),window.addCleanup(()=>a?.removeEventListener("click",t)),document.addEventListener("keydown",n),window.addCleanup(()=>document.removeEventListener("keydown",n))}function f(a){for(;a.firstChild;)a.removeChild(a.firstChild)}var m=class{constructor(e,t){this.container=e;this.content=t;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),t=this.onMouseMove.bind(this),n=this.onMouseUp.bind(this),o=this.onTouchStart.bind(this),r=this.onTouchMove.bind(this),i=this.onTouchEnd.bind(this),s=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",t),document.addEventListener("mouseup",n),this.container.addEventListener("touchstart",o,{passive:!1}),document.addEventListener("touchmove",r,{passive:!1}),document.addEventListener("touchend",i),window.addEventListener("resize",s),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",t),()=>document.removeEventListener("mouseup",n),()=>this.container.removeEventListener("touchstart",o),()=>document.removeEventListener("touchmove",r),()=>document.removeEventListener("touchend",i),()=>window.removeEventListener("resize",s))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let t=this.createButton("+",()=>this.zoom(.1)),n=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(n),e.appendChild(o),e.appendChild(t),this.container.appendChild(e)}createButton(e,t){let n=document.createElement("button");return n.textContent=e,n.className="mermaid-control-button",n.addEventListener("click",t),window.addCleanup(()=>n.removeEventListener("click",t)),n}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}onTouchStart(e){if(e.touches.length!==1)return;this.isDragging=!0;let t=e.touches[0];this.startPan={x:t.clientX-this.currentPan.x,y:t.clientY-this.currentPan.y}}onTouchMove(e){if(!this.isDragging||e.touches.length!==1)return;e.preventDefault();let t=e.touches[0];this.currentPan={x:t.clientX-this.startPan.x,y:t.clientY-this.startPan.y},this.updateTransform()}onTouchEnd(){this.isDragging=!1}zoom(e){let t=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),n=this.content.getBoundingClientRect(),o=n.width/2,r=n.height/2,i=t-this.scale;this.currentPan.x-=o*i,this.currentPan.y-=r*i,this.scale=t,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){let t=this.content.querySelector("svg").getBoundingClientRect(),n=t.width/this.scale,o=t.height/this.scale;this.scale=1,this.currentPan={x:(this.container.clientWidth-n)/2,y:(this.container.clientHeight-o)/2},this.updateTransform()}},T=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],y;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;y||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let t=y.default,n=new WeakMap;for(let r of e)n.set(r,r.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let c=n.get(s);c&&(s.innerHTML=c)}let r=T.reduce((s,c)=>(s[c]=window.getComputedStyle(document.documentElement).getPropertyValue(c),s),{}),i=document.documentElement.getAttribute("saved-theme")==="dark";t.initialize({startOnLoad:!1,securityLevel:"loose",theme:i?"dark":"base",themeVariables:{fontFamily:r["--codeFont"],primaryColor:r["--light"],primaryTextColor:r["--darkgray"],primaryBorderColor:r["--tertiary"],lineColor:r["--darkgray"],secondaryColor:r["--secondary"],tertiaryColor:r["--tertiary"],clusterBkg:r["--light"],edgeLabelBackground:r["--highlight"]}}),await t.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let r=0;r<e.length;r++){let v=function(){let g=l.querySelector("#mermaid-space"),h=l.querySelector(".mermaid-content");if(!h)return;f(h);let w=i.querySelector("svg").cloneNode(!0);h.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new m(g,h)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},i=e[r],s=i.parentElement,c=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(c),L=c.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),E(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../postscript.js" type="module" data-persist="true"></script></html>
